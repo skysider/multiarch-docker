@@ -24,5 +24,5 @@ RUN pip3 install --no-cache-dir \
 
 EXPOSE 12345
 
-CMD ['/bin/bash']
+CMD ["/bin/bash"]
 
