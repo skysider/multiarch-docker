@@ -17,6 +17,6 @@ A docker environment which could run and debug multiarch program, such as mips, 
 	socat TCP-LISTEN:12345,reuseaddr,fork EXEC:"qemu-mips -g 23333 ./demo"
 	qemu-mips -strace ./demo
 	gdb-multiarch ./demo
-	gef>set arch mips
-	gef>set endian big
-	gef>target remote localhost:23333
+	pwndbg>set arch mips
+	pwndbg>set endian big
+	pwndbg>target remote localhost:23333
