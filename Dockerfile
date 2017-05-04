@@ -23,8 +23,8 @@ RUN mkdir /etc/qemu-binfmt && \
     ln -s /usr/arm-linux-gnueabihf /etc/qemu-binfmt/arm
 
 RUN git clone https://github.com/pwndbg/pwndbg && \
-    cd pwndbg && ./setup.sh && \
-    rm -rf /var/lib/apt/list/*
+    cd pwndbg && chmod +x ./setup.sh && \
+    ./setup.sh & rm -rf /var/lib/apt/list/*
 
 WORKDIR /work/
 
