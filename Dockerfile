@@ -13,9 +13,13 @@ RUN apt-get -y update && \
 	libc6-armhf-armel-cross \
 	libc6-dbg-armhf-cross \
 	gcc-arm-linux-gnueabi \
+	g++-arm-linux-gnueabi \
 	gcc-arm-linux-gnueabihf \
+	g++-arm-linux-gnueabihf \
 	gcc-mips-linux-gnu \
+	g++-mips-linux-gnu \
 	gcc-mipsel-linux-gnu \
+	g++-mipsel-linux-gnu \
 	python3-dev \
 	python3-pip \
 	cmake \
