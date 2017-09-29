@@ -11,7 +11,7 @@ A docker environment which could run and debug multiarch program, such as mips, 
 		-v $(pwd)/${ctf_name}:/ctf/work \
     	-P \
     	--cap-add=SYS_PTRACE \
-		skysider/multiarchdocker
+		skysider/multiarch-docker
 
 ### Example
 	socat TCP-LISTEN:12345,reuseaddr,fork EXEC:"qemu-mips -g 23333 ./demo"
