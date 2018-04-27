@@ -15,7 +15,9 @@ RUN apt-get -y update && \
 		gcc-arm-linux-gnueabi \
 		gcc-arm-linux-gnueabihf \
 		gcc-mips-linux-gnu \
+		g++-mips-linux-gnu \
 		gcc-mipsel-linux-gnu \
+		g++-mipsel-linux-gnu \
 		python3-dev \
 		python3-pip \
 		cmake \
