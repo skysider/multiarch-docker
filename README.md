@@ -6,14 +6,16 @@ A docker environment which could run and debug multiarch program, such as mips, 
 
 run docker:
 
-	docker run -it \
-		--rm \
-		-h ${ctf_name} \
-		--name ${ctf_name} \
-		-v $(pwd)/${ctf_name}:/ctf/work \
-		-P \
-		--cap-add=SYS_PTRACE \
-		skysider/multiarch-docker
+```shell
+docker run -it \
+	--rm \
+	-h ${ctf_name} \
+	--name ${ctf_name} \
+	-v $(pwd)/${ctf_name}:/work/ctf \
+	-P \
+	--cap-add=SYS_PTRACE \
+	skysider/multiarch-docker
+```
 
 debug mips program in docker:
 
