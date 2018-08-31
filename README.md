@@ -8,10 +8,9 @@ run docker:
 
 	docker run -it \
 		--rm \
-		-h ${ctf_name} \
-		--name ${ctf_name} \
-		-v $(pwd)/${ctf_name}:/ctf/work \
-		-P \
+		--name ctf \
+		-v $(pwd):/work/ctf/ \
+		-p 1234:1234 -p 2333:2333 \
 		--cap-add=SYS_PTRACE \
 		skysider/multiarch-docker
 
