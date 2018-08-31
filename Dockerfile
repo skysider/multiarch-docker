@@ -21,6 +21,14 @@ RUN apt-get -y update && \
 		libc6-dbg-armhf-cross \
 		libc6-arm64-cross \
 		libc6-dbg-arm64-cross \
+
+		gcc-arm-linux-gnueabi \
+		gcc-arm-linux-gnueabihf \
+		gcc-aarch64-linux-gnu \
+		gcc-mips-linux-gnu \
+		gcc-mipsel-linux-gnu \
+		gcc-mips64-linux-gnuabi64 \
+		gcc-mips64el-linux-gnuabi64 \
 		python3-dev \
 		python3-pip \
 		cmake \
@@ -44,7 +52,5 @@ RUN git clone https://github.com/pwndbg/pwndbg && \
 WORKDIR /work/
 
 COPY listen_program.sh .
-
-
 
 CMD ["/bin/bash"]
