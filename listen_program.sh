@@ -8,6 +8,6 @@ if [[ -z ${2} ]]; then
     exit 0
 fi
 binary_path=${1}
-arch={2}
+arch=${2}
 
 socat tcp-listen:2333,reuseaddr,fork exec:"qemu-${arch} -g 1234 ${binary_path}"
