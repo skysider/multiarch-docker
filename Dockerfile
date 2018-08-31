@@ -43,8 +43,6 @@ RUN git clone https://github.com/pwndbg/pwndbg && \
 
 WORKDIR /work/
 
-COPY listen_program.sh .
-
-
+COPY listen_program.sh /work/
 
 CMD ["/bin/bash"]
