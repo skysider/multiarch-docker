@@ -21,7 +21,6 @@ RUN apt-get -y update && \
 		libc6-dbg-armhf-cross \
 		libc6-arm64-cross \
 		libc6-dbg-arm64-cross \
-
 		gcc-arm-linux-gnueabi \
 		gcc-arm-linux-gnueabihf \
 		gcc-aarch64-linux-gnu \
@@ -51,6 +50,6 @@ RUN git clone https://github.com/pwndbg/pwndbg && \
 
 WORKDIR /work/
 
-COPY listen_program.sh .
+COPY listen_program.sh /work/
 
 CMD ["/bin/bash"]
