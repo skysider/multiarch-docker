@@ -46,7 +46,7 @@ mips-linux-gnu-gcc test.c -o test-mips
 mipsel
 mips64el
 mips
-mips64(dynamically linked not supported)
+mips64
 armel(armhf)
 aarch64
 ```
