@@ -8,9 +8,7 @@ run docker:
 
 	docker run -it \
 		--rm \
-		--name ctf \
-		-v $(pwd):/work/ctf/ \
-		-p 1234:1234 -p 2333:2333 \
+		--name multiarch \
 		--cap-add=SYS_PTRACE \
 		skysider/multiarch-docker
 
@@ -20,9 +18,9 @@ debug mips program in docker:
 socat TCP-LISTEN:2333,reuseaddr,fork EXEC:"qemu-mips -g 1234 ./demo"
 qemu-mips -strace ./demo
 gdb-multiarch ./demo
-pwndbg>set arch mips
-pwndbg>set endian big
-pwndbg>target remote localhost:1234
+(gdb)set arch mips
+(gdb)set endian big
+(gdb)target remote localhost:1234
 ```
 
 If you need cross compile environment, please specify tag: `skysider/multiarch-docker:compile`
