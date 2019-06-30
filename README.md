@@ -7,7 +7,7 @@ A docker environment which could run and debug multiarch program, such as mips, 
 run docker:
 
 ```shell
-docker run -it \
+docker run -d \
 	--rm \
 	-h ${ctf_name} \
 	--name ${ctf_name} \
@@ -23,9 +23,9 @@ debug mips program in docker:
 socat TCP-LISTEN:2333,reuseaddr,fork EXEC:"qemu-mips -g 1234 ./demo"
 qemu-mips -strace ./demo
 gdb-multiarch ./demo
-pwndbg>set arch mips
-pwndbg>set endian big
-pwndbg>target remote localhost:1234
+gef>set arch mips
+gef>set endian big
+gef>target remote localhost:1234
 ```
 
 If you need cross compile environment, please specify tag: `skysider/multiarch-docker:compile`

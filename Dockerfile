@@ -1,39 +1,49 @@
-FROM phusion/baseimage:latest
+FROM phusion/baseimage:master-amd64
 MAINTAINER skysider <skysider@163.com>
 
 RUN apt-get -y update && \
-		apt-get install -y \
-		qemu-user \
-		qemu-user-static \
-		gdb-multiarch \
-		'binfmt*' \
-		libc6-mipsel-cross \
-		libc6-dbg-mipsel-cross \
-		libc6-mips-cross \
-		libc6-dbg-mips-cross \
-		libc6-mips64el-cross \
-		libc6-dbg-mips64el-cross \
-		libc6-mips64-cross \
-		libc6-dbg-mips64-cross \
-		libc6-armel-cross \
-		libc6-dbg-armel-cross \
-		libc6-armhf-cross \
-		libc6-dbg-armhf-cross \
-		libc6-arm64-cross \
-		libc6-dbg-arm64-cross \
-		gcc-arm-linux-gnueabi \
-		gcc-arm-linux-gnueabihf \
-		gcc-aarch64-linux-gnu \
-		gcc-mips-linux-gnu \
-		gcc-mipsel-linux-gnu \
-		gcc-mips64-linux-gnuabi64 \
-		gcc-mips64el-linux-gnuabi64 \
-		python3-dev \
-		python3-pip \
-		cmake \
-		socat \
-		git \
-		file
+	apt-get install -y \
+	gdb-multiarch \
+	'binfmt*' \
+	libc6-mipsel-cross \
+	libc6-dbg-mipsel-cross \
+	libc6-mips-cross \
+	libc6-dbg-mips-cross \
+	libc6-mips64el-cross \
+	libc6-dbg-mips64el-cross \
+	libc6-mips64-cross \
+	libc6-dbg-mips64-cross \
+	libc6-armel-cross \
+	libc6-dbg-armel-cross \
+	libc6-armhf-cross \
+	libc6-dbg-armhf-cross \
+	libc6-arm64-cross \
+	libc6-dbg-arm64-cross \
+	gcc-arm-linux-gnueabi \
+	gcc-arm-linux-gnueabihf \
+	gcc-aarch64-linux-gnu \
+	gcc-mips-linux-gnu \
+	gcc-mipsel-linux-gnu \
+	gcc-mips64-linux-gnuabi64 \
+	gcc-mips64el-linux-gnuabi64 \
+	python3-dev \
+	python3-pip \
+	cmake \
+	socat \
+	wget \
+	git \
+	file  \
+	flex \
+	bison \
+	libpixman-1-dev && \
+	rm -rf /var/lib/apt/list/*
+
+RUN wget https://download.qemu.org/qemu-4.0.0.tar.xz && \
+	tar xvJf qemu-4.0.0.tar.xz && cd qemu-4.0.0 && \ 
+	./configure --target-list=aarch64-linux-user,arm-linux-user,armeb-linux-user,mips64-linux-user,mips64el-linux-user,mipsel-linux-user,mips-linux-user --enable-debug && \
+	make && make install && cd .. && rm -rf qemu-4.0.0
+
+RUN wget -q -O- https://github.com/hugsy/gef/raw/master/scripts/gef.sh | sh
 
 RUN mkdir /etc/qemu-binfmt && \
     ln -s /usr/mipsel-linux-gnu /etc/qemu-binfmt/mipsel && \
@@ -43,13 +53,8 @@ RUN mkdir /etc/qemu-binfmt && \
     ln -s /usr/arm-linux-gnueabi /etc/qemu-binfmt/arm && \
 	ln -s /usr/aarch64-linux-gnu /etc/qemu-binfmt/aarch64
 
-
-RUN git clone https://github.com/pwndbg/pwndbg && \
-    cd pwndbg && sed -i 's/sudo//g' setup.sh && \
-    ./setup.sh && rm -rf /var/lib/apt/list/*
-
 WORKDIR /work/
 
 COPY listen_program.sh /work/
 
-CMD ["/bin/bash"]
+CMD ["/sbin/my_init"]
