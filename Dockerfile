@@ -4,6 +4,7 @@ MAINTAINER skysider <skysider@163.com>
 RUN apt-get -y update && \
 	apt-get install -y \
         pkg-config \
+	libglib2.0-dev \
 	gdb-multiarch \
 	'binfmt*' \
 	libc6-mipsel-cross \
