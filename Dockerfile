@@ -28,6 +28,7 @@ RUN apt-get -y update && \
 	gcc-mips64el-linux-gnuabi64 \
 	python3-dev \
 	python3-pip \
+	python \
 	cmake \
 	socat \
 	wget \
