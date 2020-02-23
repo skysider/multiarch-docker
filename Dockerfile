@@ -29,11 +29,9 @@ RUN apt-get -y update && \
 	git \
 	file \
 	ssh \
-	python \
 	tmux \
 	libffi-dev \
     libssl-dev \
-    python-dev \
     build-essential \
 	bison \
 	libpixman-1-dev \
@@ -46,15 +44,20 @@ RUN wget https://download.qemu.org/qemu-4.0.0.tar.xz && \
 	./configure --target-list=aarch64-linux-user,arm-linux-user,armeb-linux-user,mips64-linux-user,mips64el-linux-user,mipsel-linux-user,mips-linux-user --enable-debug && \
 	make && make install && cd .. && rm -rf qemu-4.0.0
 
+RUN python3 -m pip install -U pip && \
+    python3 -m pip install --no-cache-dir \
+	pwntools \
+	ropper 
+
 RUN wget -q -O- https://github.com/hugsy/gef/raw/master/scripts/gef.sh | sh
 
 RUN mkdir /etc/qemu-binfmt && \
-    ln -s /usr/mipsel-linux-gnu /etc/qemu-binfmt/mipsel && \
-    ln -s /usr/mips-linux-gnu /etc/qemu-binfmt/mips && \
-	ln -s /usr/mips64el-linux-gnuabi64 /etc/qemu-binfmt/mips64el && \
-	ln -s /usr/mips64-linux-gnuabi64 /etc/qemu-binfmt/mips64 && \
-    ln -s /usr/arm-linux-gnueabi /etc/qemu-binfmt/arm && \
-	ln -s /usr/aarch64-linux-gnu /etc/qemu-binfmt/aarch64
+    ln -s /usr/mipsel-linux-gnu /usr/mipsel-linux-gnu && \
+    ln -s /usr/mips-linux-gnu /usr/mips-linux-gnu && \
+	ln -s /usr/mips64el-linux-gnuabi64 /usr/mips64el-linux-gnuabi64 && \
+	ln -s /usr/mips64-linux-gnuabi64 /usr/mips64-linux-gnuabi64 && \
+    ln -s /usr/arm-linux-gnueabi /usr/arm-linux-gnuabihf && \
+	ln -s /usr/aarch64-linux-gnu /usr/aarch64-linux-gnu/
 
 WORKDIR /work/
 
