@@ -41,13 +41,7 @@ RUN apt-get -y update && \
 
 RUN wget https://download.qemu.org/qemu-4.0.0.tar.xz && \
 	tar xvJf qemu-4.0.0.tar.xz && cd qemu-4.0.0 && \ 
-	./configure --target-list=aarch64-linux-user, \
-		arm-linux-user, \
-		armeb-linux-user, \
-		mips64-linux-user, \
-		mips64el-linux-user, \
-		mipsel-linux-user, \
-		mips-linux-user \ 
+	./configure --target-list=aarch64-linux-user,arm-linux-user,armeb-linux-user,mips64-linux-user,mips64el-linux-user,mipsel-linux-user,mips-linux-user \
 		--enable-debug \
 		--python=/usr/bin/python3 && \
 	make && make install && cd .. && rm -rf qemu-4.0.0
