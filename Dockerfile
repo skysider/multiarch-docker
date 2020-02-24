@@ -53,13 +53,13 @@ RUN python3 -m pip install -U pip && \
 
 RUN wget -q -O- https://github.com/hugsy/gef/raw/master/scripts/gef.sh | sh
 
-RUN mkdir /etc/qemu-binfmt && \
-    ln -s /usr/mipsel-linux-gnu /usr/mipsel-linux-gnu && \
-    ln -s /usr/mips-linux-gnu /usr/mips-linux-gnu && \
-	ln -s /usr/mips64el-linux-gnuabi64 /usr/mips64el-linux-gnuabi64 && \
-	ln -s /usr/mips64-linux-gnuabi64 /usr/mips64-linux-gnuabi64 && \
-    ln -s /usr/arm-linux-gnueabi /usr/arm-linux-gnuabihf && \
-	ln -s /usr/aarch64-linux-gnu /usr/aarch64-linux-gnu/
+RUN mkdir /usr/gnemul && \
+    ln -s /usr/mipsel-linux-gnu /usr/gnemul/qemu-mipsel && \
+    ln -s /usr/mips-linux-gnu /usr/gnemul/qemu-mips && \
+	ln -s /usr/mips64el-linux-gnuabi64 /usr/gnemul/qemu-mips64el && \
+	ln -s /usr/mips64-linux-gnuabi64 /usr/gnemul/qemu-mips64 && \
+    ln -s /usr/arm-linux-gnueabi /usr/gnemul/qemu-arm && \
+	ln -s /usr/aarch64-linux-gnu /usr/gnemul/qemu-aarch64
 
 WORKDIR /work/
 
