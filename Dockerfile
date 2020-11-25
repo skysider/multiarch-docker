@@ -1,6 +1,8 @@
 FROM phusion/baseimage:master-amd64
 MAINTAINER skysider <skysider@163.com>
 
+ENV QEMU_VERSION 5.1.0
+
 RUN apt-get -y update && \
 	apt-get install -y \
         pkg-config \
@@ -40,10 +42,10 @@ RUN apt-get -y update && \
 	libpixman-1-dev && \
 	rm -rf /var/lib/apt/list/*
 
-RUN wget https://download.qemu.org/qemu-4.0.0.tar.xz && \
-	tar xvJf qemu-4.0.0.tar.xz && cd qemu-4.0.0 && \ 
+RUN wget https://download.qemu.org/qemu-${QEMU_VERSION}.tar.xz && \
+	tar xvJf qemu-${QEMU_VERSION}.tar.xz && cd qemu-${QEMU_VERSION} && \ 
 	./configure --target-list=aarch64-linux-user,arm-linux-user,armeb-linux-user,mips64-linux-user,mips64el-linux-user,mipsel-linux-user,mips-linux-user --enable-debug --python=/usr/bin/python3 && \
-	make && make install && cd .. && rm -rf qemu-4.0.0
+	make && make install && cd .. && rm -rf qemu-${QEMU_VERSION}
 
 RUN python3 -m pip install -U pip && \
     python3 -m pip install --no-cache-dir \
